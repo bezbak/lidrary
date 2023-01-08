@@ -1,0 +1,138 @@
+{% extends 'homepage.html' %}
+{% load static %}
+{% block content %}
+<div id="loader-wrapper">
+	<div id="loader"></div>
+
+	<div class="loader-section section-left"></div>
+	<div class="loader-section section-right"></div>
+
+</div>
+<!--WRAPPER START-->
+<div class="wrapper kode-header-class-3">
+	<!--HEADER START-->
+	<header class="header-3">
+    	<div class="container">
+            <div class="logo-container">
+            	<div class="row">
+                	<div class="col-md-3">
+                    	 <!--LOGO START-->
+                        <div class="logo">
+                            <a href="#"><img src="{% static 'images/logo-2.png' %}" alt=""></a>
+                        </div>
+                        <!--LOGO END-->
+                    </div>
+                    <div class="col-md-9">
+                    	<div class="top-strip">
+                            <div class="pull-left">
+                                <p>Welcome to Library theme</p>
+                            </div>
+                            <div class="social-icon">
+                                <a href="mailto:info@library-theme.com" class="pull-left">info@library-theme.com</a>
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>                 
+                                </ul>
+                            </div>
+                        </div>
+						<div id="kode-responsive-navigation" class="dl-menuwrapper">
+							<button class="dl-trigger">Open Menu</button>
+							<ul class="dl-menu">
+								<li class="menu-item kode-parent-menu"><a href="{% url 'index'%}">Home</a></li>
+								
+								<li class="menu-item kode-parent-menu"><a href="{% url 'index'%}">Book Detail</a></li>
+							</ul>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--HEADER END-->
+    <!--BANNER START-->
+    <div class="kode-banner">
+    	<ul class="bxslider">
+        	<li>
+            	<img src="{% static 'images/banner-1.png' %}" alt="">
+                <div class="kode-caption-2">
+                	<h5>Ищите книгу...?</h5>
+                	<h2>Большая библиотека книг</h2>					
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--BANNER END-->
+	<!--BUT NOW START-->
+	
+	<!--BUT NOW END-->
+    <!--CONTENT START-->
+    <div class="kode-content">
+        <!--TOP SELLERS SECTION START-->
+        <section class="lib-categories-section">
+        	<div class="container">
+            	<!--SECTION CONTENT START-->
+            	<div class="section-heading-1 dark-sec">
+                	<h2>Добро пожаловать в библиотеку</h2>
+                    <div class="kode-icon"><i class="fa fa-book"></i></div>
+                </div>
+                <!--SECTION CONTENT END-->
+                <ul class="nav nav-tabs" role="tablist">
+				{% for book in books%}
+                	<li role="presentation"><a href="{% url 'main' book.id %}" role="tab" data-toggle="tab"></a></li>
+				{%endfor%}
+                </ul>
+                
+                <!-- Tab panes -->
+                <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="Photography">
+                	<ul class="bxslider">
+						{% for book in books%}
+                    	<li>
+                        	<!--PRODUCT GRID START-->
+                            <div class="col-md-3 col-sm-6 best-seller-pro">
+								
+                                <figure>
+									<img src="{{book.post.url}}" alt="">
+								<a href="{% url 'main' book.id%}" class="card__play">
+								</a>
+                            </figure>
+                            <div class="kode-text">
+                            	<h3 class="card__title"><a href="{% url 'main' book.id%}">{{book.name}}</a></h3>
+								<span>Авторы:</span>
+								{% for author in book.authors.all %}
+									<a href="#">{{author.name}}</a>
+								{%endfor%}
+                            </div>
+						</div>
+						<!--PRODUCT GRID END-->
+					</li>
+							{%endfor%}
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </section>
+        <!--TOP SELLERS SECTION END-->
+		
+    </div>
+    <!--CONTENT END-->
+    <footer class="footer-2">
+    	<div class="container">
+        	<div class="lib-copyrights">
+                <p>Copyrights © 2015-16 KodeForest. All rights reserved</p>
+                <div class="social-icon">
+                	<ul>
+                    	<li><a href="#" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+			<div class="back-to-top">
+				<a href="#home"><i class="fa fa-angle-up"></i></a>
+			</div>
+        </div>
+    </footer>
+</div>
+<!--WRAPPER END-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+{% endblock content %}

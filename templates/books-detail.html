@@ -1,0 +1,216 @@
+{% extends 'homepage.html' %}
+{% load static %}
+{% block content %}
+<div id="loader-wrapper">
+	<div id="loader"></div>
+
+	<div class="loader-section section-left"></div>
+	<div class="loader-section section-right"></div>
+
+</div>
+<!--WRAPPER START-->
+<div class="wrapper kode-header-class-3">
+	<!--HEADER START-->
+	<header class="header-3">
+    	<div class="container">
+            <div class="logo-container">
+            	<div class="row">
+                	<div class="col-md-3">
+                    	 <!--LOGO START-->
+                        <div class="logo">
+                            <a href="#"><img src="{% static 'images/logo-2.png' %}" alt=""></a>
+                        </div>
+                        <!--LOGO END-->
+                    </div>
+                    <div class="col-md-9">
+                    	<div class="top-strip">
+                            <div class="pull-left">
+                                <p>Welcome to Library theme</p>
+                            </div>
+                            <div class="social-icon">
+                                <a href="mailto:info@library-theme.com" class="pull-left">info@library-theme.com</a>
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>                    
+                                </ul>
+                            </div>
+                        </div>
+                    	<div class="kode-navigation">
+						   <ul>
+								<li><a href="{%url 'index'%}">Назад</a></li>
+							</ul>
+						</div>
+						<div id="kode-responsive-navigation" class="dl-menuwrapper">
+							<button class="dl-trigger">Open Menu</button>
+							<ul class="dl-menu">
+								<li class="menu-item kode-parent-menu"><a href="{%url 'index'%}">Назад</a></li>
+							</ul>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--HEADER END-->
+    <!--BANNER START-->
+    <div class="kode-inner-banner">
+    	<div class="kode-page-heading">
+        	<h2>Product Detail</h2>
+            <ol class="breadcrumb">
+              <li><a href="{%url 'index'%}">Home</a></li>
+            </ol>
+        </div>
+    </div>
+    <!--BANNER END-->
+    <div class="search-section">
+        <div class="container">
+			<!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+				<li role="presentation"><a href="#Basic" aria-controls="Basic" role="tab" data-toggle="tab">Basic</a></li>
+				<li role="presentation" class="active"><a href="#Author" aria-controls="Author" role="tab" data-toggle="tab">Author</a></li>
+				<li role="presentation"><a href="#Publications" aria-controls="Publications" role="tab" data-toggle="tab">Publications</a></li>
+			  </ul>
+			
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="Basic">
+					<div class="form-container">
+						<div class="row">
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="First Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Middle Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Last Name">
+							</div>
+							<div class="col-md-3 col-sm-12">
+								<button>Search Author</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			  </div>
+		</div>
+    </div>
+    <!--CONTENT START-->
+    <div class="kode-content padding-tb-50">
+    	<div class="container">
+            <div class="row">
+                <div class="col-md-3 sidebar">
+                	<!--SEARCH WIDGET START-->	
+                    <div class="widget widget-search">
+                    	<h2>Search</h2>
+                    	<div class="input-container">
+                    		<input type="text" placeholder="Enter Keyword">
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </div>
+                    <!--SEARCH WIDGET END-->
+                      <!--CATEGORY WIDGET START-->
+                      <div class="widget widget-categories">
+                    	<h2>Categories</h2>
+                        <ul>
+                            {% for category in books %}
+                        	<li><a href="{% url 'main' category.id %}">{{category.name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!--CATEGORY WIDGET END-->
+                </div>
+                <div class="col-md-9">
+                    <!--BOOK DETAIL START-->
+                    <div class="lib-book-detail">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="kode-thumb">
+                                    <img src="{{book.post.url}}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="kode-text">
+                                	<h2>{{book.title}}</h2>
+                                    <div class="book-text">
+                                    	<li><span>Author:</span>{% for author in book.authors.all %} <a href="#">{{ author.name}}</a>{% endfor %}</li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--BOOK DETAIL END-->
+                     <section>
+                        {% for pages in book.all%}
+                        <div class="container">
+                            <div class="section-heading-1">
+                                <h2>{{pages.name}}</h2>
+                                <div class="kode-icon"><i class="fa fa-book"></i></div>
+                            </div>
+                            <div class="bb-custom-wrapper">
+                                <div id="bb-bookblock" class="bb-bookblock">
+                                    <div class="bb-item">
+                                        <div class="bb-custom-side">
+                                            <img src="{{pages.pages.url}}" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <nav>
+                                    <a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left">Previous</a>
+                                    <a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right">Next</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </section> 
+                    {%endfor%}            
+                    <!--RELATED PRODUCTS START-->
+                </div>
+            </div>
+            <section>
+                <div class="container">
+                    <div class="section-heading-1">
+                        <h2>Free Books To Read (Text Base)</h2>
+                        <p>The Most Popular Books Today are available in Book Library</p>
+                        <div class="kode-icon"><i class="fa fa-book"></i></div>
+                    </div>
+                    <div class="bb-custom-wrapper">
+                        <div id="bb-bookblock" class="bb-bookblock">
+                            <div class="bb-item">
+                                <div class="bb-custom-side">
+                                    <h3>Chepter 1</h3>
+                                    <p>Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie. Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie. Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie. Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie.Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie.</p>
+                                </div>
+                                <div class="bb-custom-side">
+                                    <h3>Chepter 2</h3>
+                                    <p>Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie.</p><p>Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie. Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie.</p>
+                                </div>
+                            </div>
+                            <div class="bb-item">
+                                <div class="bb-custom-side">
+                                    <h3>Chepter 5</h3>
+                                    <p>Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie. Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie. Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie. Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie.Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie.</p>
+                                </div>
+                                <div class="bb-custom-side">
+                                    <h3>Chepter 6</h3>
+                                    <p>Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie.</p><p>Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie. Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie.</p>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <nav>
+                            <a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left">Previous</a>
+                            <a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right">Next</a>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+        </div>
+        </div> 
+    <div class="copyrights">
+    	<div class="container">
+        	<p>Copyrights © 2015-16 KodeForest. All rights reserved</p>
+            <div class="cards"><img src="{% static 'images/cards.png' %}" alt=""></div>
+        </div>
+    </div>
+</div>
+{% endblock content %}  
